@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/dashboard">
+
+    <action
+        android:id="@+id/action_to_login"
+        app:destination="@id/login" />
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.wbertan.spikenavigation.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_common" />
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.wbertan.spikenavigation.DashboardFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/fragment_common">
+
+        <deepLink
+            android:id="@+id/deepLinkDashboard"
+            app:uri="spike://dashboard" />
+
+        <action
+            android:id="@+id/action_dashboard_to_timeline"
+            app:destination="@id/timeline" />
+
+        <action
+            android:id="@+id/action_dashboard_to_navigationReport"
+            app:destination="@id/navigationReport" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/timeline"
+        android:name="com.wbertan.spikenavigation.TimelineFragment"
+        android:label="TimelineFragment"
+        tools:layout="@layout/fragment_common">
+
+        <deepLink
+            android:id="@+id/deepLinkTimeline"
+            app:uri="spike://timeline" />
+
+        <action
+            android:id="@+id/action_timeline_to_navigationReport"
+            app:destination="@id/navigationReport" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/navigationReport"
+        app:startDestination="@id/reportOverview">
+        <fragment
+            android:id="@+id/reportOverview"
+            android:name="com.wbertan.spikenavigation.ReportOverviewFragment"
+            android:label="ReportOverviewFragment"
+            tools:layout="@layout/fragment_common">
+
+            <deepLink
+                android:id="@+id/deepLinkReportOverview"
+                app:uri="spike://reportOverview" />
+
+            <action
+                android:id="@+id/action_reportOverview_to_reportDetail"
+                app:destination="@id/reportDetail" />
+
+            <action
+                android:id="@+id/action_reportOverview_to_timeline"
+                app:destination="@id/timeline" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/reportDetail"
+            android:name="com.wbertan.spikenavigation.ReportDetailFragment"
+            android:label="ReportDetailFragment"
+            tools:layout="@layout/fragment_common">
+
+            <deepLink
+                android:id="@+id/deepLinkReportDetail"
+                app:uri="spike://reportDetail" />
+        </fragment>
+    </navigation>
+
+</navigation>
